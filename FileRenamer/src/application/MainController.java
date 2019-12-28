@@ -13,15 +13,13 @@ public class MainController {
 	private List <File> files;
 	
 	@FXML
-	private Label lblMessage;
-	@FXML
 	private Button btnFile;
-	
 	@FXML
 	private TextField txtNewName;
-	
 	@FXML
 	private AnchorPane anchorpane;
+	@FXML
+	private ListView <String> lstPreview;
 	
 	@FXML
 	public void BtnFileAction(ActionEvent action) {
@@ -29,13 +27,22 @@ public class MainController {
 		
 		Stage stage = (Stage)anchorpane.getScene().getWindow();
 		this.files = fc.showOpenMultipleDialog(stage);
+		for(int i = this.files.size() - 1; i >= 0; i--) {
+			String filename = this.files.get(i).getName();
+			this.lstPreview.getItems().add(filename);
+		}
 	}
 	
 	@FXML
 	public void BtnRenameAction(ActionEvent action) {
 		for (int i = this.files.size() - 1; i >= 0; i--) {
-			this.files.get(i).renameTo(new File (this.files.get(i).getParent() + "\\"+ this.txtNewName.getText() + (files.size() - i) + ".pdf"));
+			this.files.get(i).renameTo(new File (this.files.get(i).getParent() + "\\"+ this.txtNewName.getText() + (files.size() - i) + ".txt"));
 		}
-		this.lblMessage.setText("Renamed!");
+	}
+	
+	@FXML
+	public void btnPreviewAction(ActionEvent action) {
+		for (int i = 0; i < this.lstPreview.getItems().size(); i++) {
+		}
 	}
 }
