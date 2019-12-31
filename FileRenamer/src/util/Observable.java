@@ -1,7 +1,10 @@
 package util;
-import java.util.*;
+
+import java.util.ArrayList;
+
 
 public class Observable {
+
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	public void attach(Observer o) {
 		observers.add(o);
@@ -14,6 +17,5 @@ public class Observable {
 			o.update(this);
 		}
 	}
-	
 }
 

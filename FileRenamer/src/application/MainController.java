@@ -1,48 +1,51 @@
 package application;
-import java.io.*;
-import java.util.List;
+import util.Observer;
 
-import javafx.event.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.stage.*;
-import javafx.fxml.*;
+import java.awt.event.ActionListener;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class MainController {
 	
-	private List <File> files;
-	
+	private MainModel model;
 	@FXML
 	private Button btnFile;
 	@FXML
-	private TextField txtNewName;
-	@FXML
 	private AnchorPane anchorpane;
 	@FXML
-	private ListView <String> lstPreview;
+	private ListView <String >lstPreview;
+	private PreviewView preview; 
+	@FXML
+	private TextField txtRename;
+	@FXML
+	private Button btnPreview;
 	
 	@FXML
 	public void BtnFileAction(ActionEvent action) {
 		FileChooser fc = new FileChooser();
-		
 		Stage stage = (Stage)anchorpane.getScene().getWindow();
-		this.files = fc.showOpenMultipleDialog(stage);
-		for(int i = this.files.size() - 1; i >= 0; i--) {
-			String filename = this.files.get(i).getName();
-			this.lstPreview.getItems().add(filename);
-		}
+		this.model = new MainModel(fc.showOpenMultipleDialog(stage));
+		this.preview = new PreviewView(this.lstPreview);
+		this.model.attach((Observer)this.preview);
 	}
 	
 	@FXML
 	public void BtnRenameAction(ActionEvent action) {
-		for (int i = this.files.size() - 1; i >= 0; i--) {
-			this.files.get(i).renameTo(new File (this.files.get(i).getParent() + "\\"+ this.txtNewName.getText() + (files.size() - i) + ".txt"));
-		}
+		this.model.rename(this.txtRename.getText());
 	}
 	
 	@FXML
-	public void btnPreviewAction(ActionEvent action) {
-		for (int i = 0; i < this.lstPreview.getItems().size(); i++) {
-		}
+	public void TxtAutoRename(ActionEvent action) {
+		this.model.fake_rename(this.txtRename.getText());
 	}
+
+	
 }

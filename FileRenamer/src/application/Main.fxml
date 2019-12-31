@@ -10,9 +10,9 @@
    <children>
       <Button fx:id="btnFile" layoutX="165.0" layoutY="46.0" mnemonicParsing="false" onAction="#BtnFileAction" text="Select Files" />
       <Label layoutX="172.0" layoutY="100.0" text="Rename To:" />
-      <TextField fx:id="txtNewName" layoutX="130.0" layoutY="126.0" />
-      <Button fx:id="btnRename" layoutX="151.0" layoutY="432.0" mnemonicParsing="false" onAction="#BtnRenameAction" text="Rename All" />
-      <ListView fx:id="lstPreview" layoutX="105.0" layoutY="212.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button fx:id="btnPreview" layoutX="176.0" layoutY="169.0" mnemonicParsing="false" text="Preview" />
+      <TextField fx:id="txtRename" layoutX="130.0" layoutY="126.0" />
+      <Button fx:id="btnRename" layoutX="167.0" layoutY="427.0" mnemonicParsing="false" onAction="#BtnRenameAction" text="Rename All" />
+      <ListView fx:id="lstPreview" layoutX="105.0" layoutY="209.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="179.0" layoutY="168.0" mnemonicParsing="false" onAction="#TxtAutoRename" text="Preview" />
    </children>
 </AnchorPane>
