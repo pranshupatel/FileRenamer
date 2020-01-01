@@ -1,5 +1,7 @@
 package application;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,7 +16,7 @@ import javafx.stage.Stage;
 public class MainController {
 	
 	// Model and Views 
-	private MainModel model;
+	private MainModel model = new MainModel();
 	private PreviewView preview;
 	
 	// Displays/Controls
@@ -36,13 +38,14 @@ public class MainController {
 		  */
 		FileChooser fc = new FileChooser();
 		Stage stage = (Stage)anchorpane.getScene().getWindow();
-		if (fc.showOpenMultipleDialog(stage) != null) {
-			
-			this.model = new MainModel(fc.showOpenMultipleDialog(stage));  // Initialize Model based on selected files
-			// View Initialization
-			this.preview = new PreviewView(this.lstPreview);
-			this.model.attach(this.preview); // Model View hookup
-		}
+		java.util.List<File> files = fc.showOpenMultipleDialog(stage);
+		
+			if (files != null) {
+				this.model.extend(files);  // Initialize Model based on selected files
+				// View Initialization
+				this.preview = new PreviewView(this.lstPreview);
+				this.model.attach(this.preview); // Model View hookup
+			}
 	}
 	
 	@FXML

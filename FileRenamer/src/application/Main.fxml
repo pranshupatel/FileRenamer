@@ -14,5 +14,6 @@
       <Button fx:id="btnRename" layoutX="167.0" layoutY="427.0" mnemonicParsing="false" onAction="#BtnRenameAction" text="Rename All" />
       <ListView fx:id="lstPreview" layoutX="105.0" layoutY="209.0" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="179.0" layoutY="168.0" mnemonicParsing="false" onAction="#TxtAutoRename" text="Preview" />
+      <Button fx:id="btnAdd" layoutX="324.0" layoutY="297.0" mnemonicParsing="false" onAction="#BtnFileAction" text="Add" />
    </children>
 </AnchorPane>

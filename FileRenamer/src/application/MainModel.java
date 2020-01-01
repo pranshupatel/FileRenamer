@@ -19,15 +19,6 @@ public class MainModel extends Observable {
 	
 	private ArrayList <File> files = new ArrayList<File> ();
 	private ArrayList <String> names = new ArrayList<String>();
-
-	public MainModel(List <File> selectedFiles) {
-		for (int i = selectedFiles.size()-1; i >= 0; i--) {
-			this.files.add(selectedFiles.get(i));
-		}
-		for (int i = 0; i < selectedFiles.size(); i++) {
-			this.names.add(this.files.get(i).getName());
-		}
-	}
 	
 	public void fake_rename (String newName) {
 		/*
@@ -55,6 +46,17 @@ public class MainModel extends Observable {
 		}
 		this.notifyObservers();
 	}
+	
+	public void extend(List <File> newFiles) {
+		this.files.addAll(newFiles);
+		for (int i = this.names.size(); i < this.files.size(); i++) {
+			this.names.add(this.files.get(i).getName());
+		}
+		this.notifyObservers();
+	}
+	
+	
+	// === HELPER METHODS ===
 	
 	public Boolean isEmpty() {
 		return this.files.isEmpty();
