@@ -37,7 +37,7 @@ public class MainModel extends Observable {
 		
 		for (int i = 0; i < this.names.size(); i++) {
 			this.names.remove(i);
-			this.names.add(i, newName + (i+1) + ".txt");
+			this.names.add(i, newName + (i+1) + getExtension(this.files.get(i)));
 		}
 		this.notifyObservers();
 	}
@@ -48,14 +48,44 @@ public class MainModel extends Observable {
 		 * correct formatted extension ex. txt, pdf, etc.)
 		 */
 		for (int i = 0; i < this.files.size(); i++) {
-			File newFile = new File(this.files.get(i).getParent() + "\\" + newName + (i+1) + ".txt");
+			File file =  this.files.get(i);
+			String newPath = file.getParent() + "\\" + newName + (i+1) + getExtension(file);
+			File newFile = new File(newPath);
 			this.files.get(i).renameTo(newFile);
 		}
 		this.notifyObservers();
 	}
 	
+	public Boolean isEmpty() {
+		return this.files.isEmpty();
+	}
+	
 	public ArrayList<String> getNames() {
 		return this.names;
 	}
+	
+	public static String getExtension (File file) {
+		/*
+		 * Return the extension of <file>. Ex, ".txt" or ".pdf"
+		 * HELPER METHOD, DONT CHANGE
+		 */
+		String name = file.getName();
+		ArrayList<String> nameSplit = split(name, ".");
+		return nameSplit.get(1);
+	}
+	
+	public static ArrayList <String> split (String name, String chr) {
+		/*
+		 * Return an ArrayList containing all the parts of the String <name> that are 
+		 * seperated by <chr>".
+		 * HELPER METHOD, DONT CHANGE
+		 */
+		ArrayList <String> split = new ArrayList<String>();
+		int index = name.indexOf(chr);
+		split.add(name.substring(0, index));
+		split.add(name.substring(index));
+		return split;
+		
+	} 
 	
 }

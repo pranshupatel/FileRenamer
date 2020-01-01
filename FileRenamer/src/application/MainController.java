@@ -29,20 +29,20 @@ public class MainController {
 	@FXML
 	private Button btnPreview;
 	
-	
 	@FXML
 	public void BtnFileAction(ActionEvent action) {
 		 /* 
 		  * "Select File" button click action. Note: This method acts as the model and view initializer.
 		  */
-		
 		FileChooser fc = new FileChooser();
 		Stage stage = (Stage)anchorpane.getScene().getWindow();
-		this.model = new MainModel(fc.showOpenMultipleDialog(stage));  // Initialize Model based on selected files
-		
-		// View Initialization
-		this.preview = new PreviewView(this.lstPreview);
-		this.model.attach(this.preview); // Model View hookup
+		if (fc.showOpenMultipleDialog(stage) != null) {
+			
+			this.model = new MainModel(fc.showOpenMultipleDialog(stage));  // Initialize Model based on selected files
+			// View Initialization
+			this.preview = new PreviewView(this.lstPreview);
+			this.model.attach(this.preview); // Model View hookup
+		}
 	}
 	
 	@FXML
