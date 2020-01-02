@@ -45,6 +45,7 @@ public class MainController {
 				// View Initialization
 				this.preview = new PreviewView(this.lstPreview);
 				this.model.attach(this.preview); // Model View hookup
+				this.model.notifyObservers();
 			}
 	}
 	
@@ -61,7 +62,9 @@ public class MainController {
 		/*
 		 * "Preview" button click action. Note: This method does NOT actually rename the files.
 		 */
-		this.model.fake_rename(this.txtRename.getText());
+		if (!this.txtRename.getText().isEmpty()) {
+			this.model.fake_rename(this.txtRename.getText());
+		}
 	}
 
 	
