@@ -48,6 +48,10 @@ public class MainModel extends Observable {
 	}
 	
 	public void extend(List <File> newFiles) {
+		/*
+		 * Extend the <files> attribute with all the new files in <newFiles>. NOTE: Works same as the .extend
+		 * method for Lists in Python.
+		 */
 		this.files.addAll(newFiles);
 		for (int i = this.names.size(); i < this.files.size(); i++) {
 			this.names.add(this.files.get(i).getName());

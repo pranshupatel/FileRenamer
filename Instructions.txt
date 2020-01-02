@@ -34,10 +34,9 @@ Add Ons in Order:
 BUG: Currently it is not possible to highlight/select files from multiple different directories in the FileChooser. The 
 code is fine, its just the FileChooser doesnt allow you to select multiple directory files
 
-1. After Rename button is clicked, a new pop up asks if you would like to store all these selected files in a folder.
-2. Show the selected files after User Clicks "Open" on the Stage.
-3. Show the new names preview of all the selected files from above.
-5. Add more labelling options (such as months, years, etc)
-6. Add indexs to the labelling options which allows users to further modify the formatting
+1. Make the Preview editable.
+2. Provide an option to relocate all renamed files to a specific folder.
+3. Add more labelling options (such as months, years, etc).
+4. Add indexs to the labelling options which allows users to further modify the formatting
 (such as starting numbers from 10 instead of 1)
 
