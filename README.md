@@ -1,13 +1,10 @@
 # FileRenamer
 A GUI application that makes it easy for users to rename files in bulk.
 ### Prerequisites
-1. Download Java 8 (JDK 1.8) **Any newer Java version will work***
- 	Link: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-2. Download Newest version of Eclipse (2019-12)
-	Link: https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-12/R/eclipse-inst-win64.exe
+1. * [Java 8] (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Any newer Java version will work 
+2. * [Eclipse] (https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-12/R/eclipse-inst-win64.exe) - IDE 
 3. Install JavaFx by going on Help => Eclipse Marketplace => Search javafx => Downlaod e(fx)clipse 3.6.0
-4. Download SceneBuilder 
-	Link: https://gluonhq.com/products/scene-builder/
+4. * [SceneBuilder](https://gluonhq.com/products/scene-builder/)
 5. SET THE LOCATION OF THE SCENEBUILDER (MAKE SURE TO DO THIS)...
 	Go to Window => Preferences => JavaFX => Change Location of SceneBuilder executable to whichever directory
 	 you stored the application.
