@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.TextField;
 import util.Observable;
 
 /** MainModel class. Stores all relevant information of the selected files and the actions that can be
@@ -17,10 +18,10 @@ public class MainModel extends Observable {
 	 * names: Stores all the "Preview" file names in an ArrayList
 	 **/
 	
-	private ArrayList <File> files = new ArrayList<File> ();
+	private ArrayList <File> files	= new ArrayList <File> ();
 	private ArrayList <String> names = new ArrayList<String>();
 	
-	public void fake_rename (String newName) {
+	public void fakeRenameAll (String newName) {
 		/*
 		 * Rename all values in the this.names to match the name of the the text inputted in the textfield (with the correct
 		 * format and extension ex. txt, pdf, etc)
@@ -33,16 +34,31 @@ public class MainModel extends Observable {
 		this.notifyObservers();
 	}
 	
-	public void rename (String newName) {
+	public void renameAll (PreviewView view) {
 		/*
 		 * Rename all the file names in this.files to match the name of the text inputted in the textfield (with the 
 		 * correct formatted extension ex. txt, pdf, etc.)
 		 */
 		for (int i = 0; i < this.files.size(); i++) {
-			File file =  this.files.get(i);
-			String newPath = file.getParent() + "\\" + newName + (i+1) + getExtension(file);
+			TextField txtName = (TextField) view.getGridPreview().getChildren().get(i);
+			File file = this.files.get(i);
+			String newPath = file.getParent() + "\\" + txtName.getText();
 			File newFile = new File(newPath);
 			this.files.get(i).renameTo(newFile);
+			this.files.remove(i);
+			this.files.add(i, newFile);
+		}
+		this.notifyObservers();
+	}
+	
+	public void fakeRenameSeperate(PreviewView view) {
+		/*
+		 * "Fake" renames the files seperately by each textbox. NOT MEANT FOR BULK FILE EDITING.
+		 */
+		for (int i = 0; i < this.names.size(); i++) {
+			this.names.remove(i);
+			TextField txtName = (TextField) view.getGridPreview().getChildren().get(i);
+			this.names.add(i, txtName.getText());
 		}
 		this.notifyObservers();
 	}
@@ -52,6 +68,7 @@ public class MainModel extends Observable {
 		 * Extend the <files> attribute with all the new files in <newFiles>. NOTE: Works same as the .extend
 		 * method for Lists in Python.
 		 */
+		
 		this.files.addAll(newFiles);
 		for (int i = this.names.size(); i < this.files.size(); i++) {
 			this.names.add(this.files.get(i).getName());
@@ -68,6 +85,10 @@ public class MainModel extends Observable {
 	
 	public ArrayList<String> getNames() {
 		return this.names;
+	}
+	
+	public ArrayList <File> getFiles() {
+		return this.files;
 	}
 	
 	public static String getExtension (File file) {

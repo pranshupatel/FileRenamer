@@ -3,7 +3,9 @@ import util.Observable;
 import util.Observer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 
 public class PreviewView implements Observer { 
 	/**
@@ -12,21 +14,73 @@ public class PreviewView implements Observer {
 	 */
 	
 	@FXML
-	private ListView <String> lstPreview;
+	private GridPane gridPreview;
 	
-	public PreviewView(ListView <String> lstPreview) {
-		this.lstPreview = lstPreview;
+	
+	public PreviewView(GridPane gridPreview) {
+		this.gridPreview = gridPreview;
+		for (int i  = 0; i < gridPreview.getChildren().size() / 2; i++) {
+			TextField txtName = (TextField) this.gridPreview.getChildren().get(i);
+			txtName.setEditable(false);
+		}
 	}
 	@Override
 	public void update(Observable o) {
 		/*
-		 * Updates the Preview ListView.
+		 * Updates the Preview GridPane
 		 */
 		MainModel model = (MainModel)o;
-		this.lstPreview.getItems().remove(0, this.lstPreview.getItems().size());
-		for (int i = 0; i < model.getNames().size(); i++) {
-			this.lstPreview.getItems().add(model.getNames().get(i));
+		int start = gridPreview.getChildren().size() / 2;                           // Starts at first label (right hand side column)
+		int end = model.getFiles().size() + gridPreview.getChildren().size() / 2;  // Last non empty label index
+		
+		// Set the real file names
+		for (int i = start; i < end ; i++) {
+			Label lblRealName = (Label) this.gridPreview.getChildren().get(i);
+			lblRealName.setText(model.getFiles().get(i-start).getName());
 		}
+		
+		// Set the "new" selected file names.
+		for (int i = 0; i < model.getNames().size(); i++) {
+			TextField txtName = (TextField) this.gridPreview.getChildren().get(i);
+			txtName.setText(model.getNames().get(i));
+		}
+	}
+	
+	public void enableEdit() {
+		/*
+		 * Enables name editing for selected files
+		 */
+		
+		for (int i = 0; i < this.gridPreview.getChildren().size() / 2; i++) {
+			TextField txtName = (TextField) this.gridPreview.getChildren().get(i);
+			if (txtName.getText().isEmpty()) {
+				break;
+			}
+			else {
+				txtName.setEditable(true);
+			}
+		}
+	}
+	
+	public void disableEdit() {
+		/*
+		 * Disables name editing for selected files
+		 */
+		
+		for (int i = 0; i < this.gridPreview.getChildren().size() / 2; i++) {
+			TextField txtName = (TextField) this.gridPreview.getChildren().get(i);
+			if (txtName.getText().isEmpty()) {
+				break;
+			}
+			else {
+				txtName.setEditable(false);
+			}
+		}
+	}
+	
+	
+	public GridPane getGridPreview() {
+		return this.gridPreview;
 	}
 
 }
