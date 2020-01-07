@@ -45,8 +45,8 @@ public class MainController{
 		FileChooser fc = new FileChooser();
 		Stage stage = (Stage)anchorpane.getScene().getWindow();
 		java.util.List<File> files = fc.showOpenMultipleDialog(stage);
-		
-			if (files != null) {
+
+			if (files != null){
 				// View Initialization
 				this.preview = new PreviewView(this.gridPreview);
 				this.model.attach(this.preview); // Model View hookup

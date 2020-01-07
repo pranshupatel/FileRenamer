@@ -69,9 +69,11 @@ public class MainModel extends Observable {
 		 * method for Lists in Python.
 		 */
 		
-		this.files.addAll(newFiles);
-		for (int i = this.names.size(); i < this.files.size(); i++) {
-			this.names.add(this.files.get(i).getName());
+		for (int i = 0; i < newFiles.size(); i++) {
+			if (!this.files.contains(newFiles.get(i))){
+				this.files.add(newFiles.get(i));
+				this.names.add(newFiles.get(i).getName());
+			}
 		}
 		this.notifyObservers();
 	}
