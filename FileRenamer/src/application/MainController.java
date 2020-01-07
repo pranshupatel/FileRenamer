@@ -90,6 +90,7 @@ public class MainController{
 		 */
 		this.model.fakeRenameSeperate(this.preview);
 		this.preview.disableEdit();
+		this.btnDone.setDisable(true);
 		this.btnEdit.setDisable(false);
 		
 	}
