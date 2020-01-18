@@ -1,3 +1,13 @@
+### 1. Choose Files
+![Colour Block Logo](/1.png)
+### 2. View files in Preview
+![Colour Block Logo](/2.png)
+### 3. Choose a common file name and type into textbox.
+![Colour Block Logo](/3.png)
+### 4. View the new changes
+![Colour Block Logo](/4.png)
+### 5. Rename all files with one click!
+![Colour Block Logo](/5.png)
 # FileRenamer
 A GUI application that makes it easy for users to rename files in bulk.
 ### Prerequisites
