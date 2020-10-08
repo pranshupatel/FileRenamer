@@ -36,5 +36,3 @@ go in the "Properties" tab on right, and name the control id accordingly (with p
 6. Submit pull request
 ## Authors
 * **Pranshu Patel** - [pranshupatel](https://github.com/pranshupatel)
-* **Shayan Imam** - [spysly](https://github.com/spysly)  
-See also the list of [contributors](https://github.com/pranshupatel/FileRenamer/contributors)
