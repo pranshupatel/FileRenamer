@@ -1,3 +1,6 @@
+# Bulk File Manager
+
+
 ### 1. Choose Files
 ![Colour Block Logo](/1.png)
 ### 2. View files in Preview
