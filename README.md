@@ -11,7 +11,7 @@
 ![Colour Block Logo](/4.png)
 ### 5. Rename all files with one click!
 ![Colour Block Logo](/5.png)
-# FileRenamer
+# Bulk File Manager
 A GUI application that makes it easy for users to rename files in bulk.
 ### Prerequisites
 * [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Any newer Java version will work 
